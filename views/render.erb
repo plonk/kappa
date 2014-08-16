@@ -1,0 +1,14 @@
+<%
+base = params['base'].to_i
+%>
+
+<h1>基礎値 <%= base %> の盾</h1>
+
+<%
+slope = slope(base)
+intercept = intercept(base)
+
+system("gnuplot -e 'set terminal png; set output \"public/result/out.png\"; set grid; set xtics 1; set ytics 1; set xr[0:20]; plot #{slope}*x+#{intercept}'")
+%>
+
+<center><img src="result/out.png"></center>
